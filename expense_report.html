@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Options Report — Nick 2026–2028</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inconsolata:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f0;
+    --ink: #1a1814;
+    --mid: #6b6760;
+    --rule: #d4cfc6;
+    --a: #1a4a8a;
+    --b: #7a3a00;
+    --c: #0a5c3a;
+    --d: #5a1a6a;
+    --highlight: #e8f0fa;
+    --font-head: 'Syne', sans-serif;
+    --font-mono: 'Inconsolata', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.6;
+    padding: 48px 24px 80px;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  /* Masthead */
+  .masthead {
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 24px 0 20px;
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+  }
+
+  .masthead-title {
+    font-family: var(--font-head);
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .masthead-meta {
+    text-align: right;
+    font-size: 11px;
+    color: var(--mid);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+
+  /* Intro */
+  .intro {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .intro-text {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.8;
+  }
+
+  .intro-assumptions {
+    border-left: 2px solid var(--rule);
+    padding-left: 20px;
+  }
+
+  .assumptions-label {
+    font-family: var(--font-head);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 10px;
+  }
+
+  .assumption-item {
+    font-size: 11px;
+    color: var(--mid);
+    padding: 4px 0;
+    border-bottom: 1px solid var(--rule);
+    line-height: 1.5;
+  }
+
+  /* Option cards */
+  .options-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 640px) { .options-row { grid-template-columns: 1fr; } }
+
+  .option-card {
+    border: 1px solid var(--rule);
+    background: white;
+    overflow: hidden;
+  }
+
+  .option-header {
+    padding: 16px 20px 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .option-letter {
+    font-family: var(--font-head);
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+
+  .option-name {
+    font-family: var(--font-head);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .option-desc {
+    font-size: 11px;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+
+  .option-body {
+    padding: 16px 20px;
+  }
+
+  .cost-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid #f0ece4;
+    font-size: 12px;
+    align-items: baseline;
+  }
+
+  .cost-row:last-of-type { border-bottom: none; }
+
+  .cost-label { color: var(--ink); }
+  .cost-sub { font-size: 10px; color: var(--mid); margin-top: 1px; }
+
+  .cost-val {
+    font-weight: 500;
+    white-space: nowrap;
+    text-align: right;
+  }
+
+  .cost-val.na { color: var(--mid); font-style: italic; }
+  .cost-val.saved { color: var(--c); }
+
+  .option-total {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 2px solid var(--ink);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+  }
+
+  .total-label {
+    font-family: var(--font-head);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .total-val {
+    font-family: var(--font-head);
+    font-size: 22px;
+    font-weight: 800;
+  }
+
+  .option-notes {
+    margin-top: 14px;
+    padding: 10px 12px;
+    background: #f7f5f0;
+    border-left: 3px solid var(--rule);
+    font-size: 11px;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 40px 0;
+  }
+
+  /* Comparison table */
+  .section-head {
+    font-family: var(--font-head);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    font-size: 12px;
+  }
+
+  .compare-table th {
+    font-family: var(--font-head);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 2px solid var(--ink);
+    background: white;
+  }
+
+  .compare-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table tr:nth-child(even) td { background: #faf8f4; }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 7px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+
+  .tag-good { background: #e8f5ee; color: var(--c); }
+  .tag-ok { background: #fef3e2; color: #8a5a00; }
+  .tag-bad { background: #fce8e8; color: #8a1a1a; }
+  .tag-na { background: #f0ece4; color: var(--mid); }
+
+  /* Rec box */
+  .rec-box {
+    border: 2px solid var(--ink);
+    padding: 28px 32px;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .rec-eyebrow {
+    font-family: var(--font-head);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 8px;
+  }
+
+  .rec-title {
+    font-family: var(--font-head);
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+
+  .rec-body {
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.8;
+    max-width: 640px;
+  }
+
+  .rec-badge {
+    position: absolute;
+    top: -1px;
+    right: 24px;
+    background: var(--ink);
+    color: var(--bg);
+    font-family: var(--font-head);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+  }
+
+  /* Timeline strip */
+  .timeline-section { margin-bottom: 40px; }
+
+  .timeline-strip {
+    display: grid;
+    gap: 1px;
+    margin-top: 12px;
+  }
+
+  .tl-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .tl-period {
+    font-size: 10px;
+    color: var(--mid);
+    letter-spacing: 0.5px;
+    padding-top: 2px;
+    white-space: nowrap;
+  }
+
+  .tl-bars {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+  }
+
+  .tl-bar {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: white;
+    opacity: 0.9;
+  }
+
+  .tl-bar.empty {
+    background: #eeebe4;
+    color: var(--mid);
+    opacity: 1;
+  }
+
+  .tl-legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    color: var(--mid);
+    letter-spacing: 0.5px;
+  }
+
+  .legend-swatch {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+  }
+
+  /* Footer */
+  .footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+    font-size: 10px;
+    color: var(--mid);
+    letter-spacing: 0.5px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Color helpers */
+  .ca { color: var(--a); }
+  .cb { color: var(--b); }
+  .cc { color: var(--c); }
+  .cd { color: var(--d); }
+  .bga { background: var(--a); }
+  .bgb { background: var(--b); }
+  .bgc { background: var(--c); }
+  .bgd { background: var(--d); }
+  .border-a { border-left: 3px solid var(--a); }
+  .border-b { border-left: 3px solid var(--b); }
+  .border-c { border-left: 3px solid var(--c); }
+  .border-d { border-left: 3px solid var(--d); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Masthead -->
+  <div class="masthead">
+    <div class="masthead-title">Australia &amp;<br>Ironman Options<br>Report</div>
+    <div class="masthead-meta">
+      Prepared June 2026<br>
+      Options A · B · C · D<br>
+      Nick · University of Michigan<br>
+      Target race: Ironman 2027
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <div class="intro">
+    <div class="intro-text">
+      This report compares four scenarios for completing your remaining coursework, completing a summer internship, and racing a full Ironman — with or without a semester at UNSW Sydney. Costs are estimates based on current data and should be verified closer to decision time. All USD unless noted. Michigan tuition assumed equivalent across options (you're paying it either way). Costs shown are the <em>incremental</em> costs attributable to each scenario — what changes depending on which path you choose.
+    </div>
+    <div class="intro-assumptions">
+      <div class="assumptions-label">Assumptions</div>
+      <div class="assumption-item">Michigan tuition: not included (same across all options)</div>
+      <div class="assumption-item">AUD/USD rate: ~0.65 (1 AUD = 0.65 USD)</div>
+      <div class="assumption-item">Ironman reg fee: ~$900–1,000 USD</div>
+      <div class="assumption-item">Sydney living: ~AUD 3,500/mo = ~$2,275 USD/mo</div>
+      <div class="assumption-item">Flight US→Sydney: ~$1,400–1,800 USD</div>
+      <div class="assumption-item">Bike travel case: ~$800 USD (one-time)</div>
+      <div class="assumption-item">Bike airline fee: ~$200–300 each way</div>
+      <div class="assumption-item">Bike rental AUS: ~$400–600 for race period</div>
+      <div class="assumption-item">Port Macquarie trip: ~$300 (transport + hotel)</div>
+      <div class="assumption-item">Lake Placid trip: ~$800 (hotel race weekend)</div>
+      <div class="assumption-item">Internship income: ~$8,000–15,000 (offsets costs)</div>
+    </div>
+  </div>
+
+  <!-- Option Cards -->
+  <div class="section-head">Cost breakdown by option</div>
+  <div class="options-row">
+
+    <!-- Option A -->
+    <div class="option-card border-a">
+      <div class="option-header">
+        <div class="option-letter ca">A</div>
+        <div class="option-name">Sydney + Ironman Australia</div>
+        <div class="option-desc">UNSW fall 2027 · 2 math courses · Summer internship · Port Macquarie Oct 2027</div>
+      </div>
+      <div class="option-body">
+        <div class="cost-row">
+          <div><div class="cost-label">Flight to Sydney</div><div class="cost-sub">Round trip, economy</div></div>
+          <div class="cost-val">$1,600</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Sydney living costs</div><div class="cost-sub">4 months × ~$2,275/mo</div></div>
+          <div class="cost-val">$9,100</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">UNSW program fees</div><div class="cost-sub">2 math courses, study abroad admin</div></div>
+          <div class="cost-val">$1,500</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Australian visa + health</div><div class="cost-sub">Student visa + OSHC insurance</div></div>
+          <div class="cost-val">$700</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Ironman Australia entry</div><div class="cost-sub">Port Macquarie, Oct 2027</div></div>
+          <div class="cost-val">$950</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Bike solution</div><div class="cost-sub">Rent in AUS (avoids shipping)</div></div>
+          <div class="cost-val">$500</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Port Macquarie race trip</div><div class="cost-sub">4 hrs from Sydney · transport + 2 nights</div></div>
+          <div class="cost-val">$350</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Travel within Australia</div><div class="cost-sub">Exploring during semester</div></div>
+          <div class="cost-val">$1,500</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Internship income (summer)</div><div class="cost-sub">Offsets total cost</div></div>
+          <div class="cost-val saved">−$10,000</div>
+        </div>
+        <div class="option-total">
+          <div class="total-label">Net incremental cost</div>
+          <div class="total-val ca">~$6,200</div>
+        </div>
+        <div class="option-notes">
+          Best training timeline. Internship fits naturally in summer before departure. Bike rental removes the shipping headache. Main risk: training disruption during Sept move-in period — build in a 2-week buffer. Family cannot easily attend the race.
+        </div>
+      </div>
+    </div>
+
+    <!-- Option B -->
+    <div class="option-card border-b">
+      <div class="option-header">
+        <div class="option-letter cb">B</div>
+        <div class="option-name">Sydney + Lake Placid</div>
+        <div class="option-desc">UNSW fall 2027 · 2 math courses · Lake Placid July 2027 · No summer internship</div>
+      </div>
+      <div class="option-body">
+        <div class="cost-row">
+          <div><div class="cost-label">Flight to Sydney</div><div class="cost-sub">Round trip, economy</div></div>
+          <div class="cost-val">$1,600</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Sydney living costs</div><div class="cost-sub">4 months × ~$2,275/mo</div></div>
+          <div class="cost-val">$9,100</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">UNSW program fees</div><div class="cost-sub">2 math courses, study abroad admin</div></div>
+          <div class="cost-val">$1,500</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Australian visa + health</div><div class="cost-sub">Student visa + OSHC insurance</div></div>
+          <div class="cost-val">$700</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Ironman Lake Placid entry</div><div class="cost-sub">July 20, 2027</div></div>
+          <div class="cost-val">$950</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Lake Placid race weekend</div><div class="cost-sub">Hotel Fri–Sun, race weekend</div></div>
+          <div class="cost-val">$800</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Bike travel (domestic)</div><div class="cost-sub">Drive or ship bike to Lake Placid</div></div>
+          <div class="cost-val">$150</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Travel within Australia</div><div class="cost-sub">Exploring during semester</div></div>
+          <div class="cost-val">$1,500</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Internship income</div><div class="cost-sub">Not feasible alongside Ironman build</div></div>
+          <div class="cost-val na">$0</div>
+        </div>
+        <div class="option-total">
+          <div class="total-label">Net incremental cost</div>
+          <div class="total-val cb">~$16,300</div>
+        </div>
+        <div class="option-notes">
+          Significantly more expensive than Option A because the summer internship is displaced by the Ironman build. Training timeline is compressed — peak training during senior spring semester is genuinely difficult. Family can attend Lake Placid easily. You arrive in Sydney race-free and relaxed.
+        </div>
+      </div>
+    </div>
+
+    <!-- Option C -->
+    <div class="option-card border-c">
+      <div class="option-header">
+        <div class="option-letter cc">C</div>
+        <div class="option-name">No Australia · Lake Placid</div>
+        <div class="option-desc">Stay at Michigan · Complete all 10 courses senior year · Summer internship · Lake Placid July 2027</div>
+      </div>
+      <div class="option-body">
+        <div class="cost-row">
+          <div><div class="cost-label">Flight / Sydney living</div><div class="cost-sub">Not applicable</div></div>
+          <div class="cost-val na">—</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Ann Arbor living (senior yr)</div><div class="cost-sub">Already budgeted, no change</div></div>
+          <div class="cost-val na">—</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Ironman Lake Placid entry</div><div class="cost-sub">July 20, 2027</div></div>
+          <div class="cost-val">$950</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Lake Placid race weekend</div><div class="cost-sub">Hotel + travel, family can join</div></div>
+          <div class="cost-val">$800</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Bike travel (domestic)</div><div class="cost-sub">Drive or ship bike</div></div>
+          <div class="cost-val">$150</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Internship income (summer)</div><div class="cost-sub">Offsets costs</div></div>
+          <div class="cost-val saved">−$10,000</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Australia experience</div><div class="cost-sub">Not included</div></div>
+          <div class="cost-val na">—</div>
+        </div>
+        <div class="option-total">
+          <div class="total-label">Net incremental cost</div>
+          <div class="total-val cc">~−$8,100</div>
+        </div>
+        <div class="option-notes">
+          Cheapest option by far — internship income more than covers the race costs. Senior year course load is heavy (10 courses). No Australia experience. Training timeline is cleanest of any option — full strength block, proper ramp, Lake Placid in July. Family and friend can attend. Least exciting but most financially responsible.
+        </div>
+      </div>
+    </div>
+
+    <!-- Option D -->
+    <div class="option-card border-d">
+      <div class="option-header">
+        <div class="option-letter cd">D</div>
+        <div class="option-name">No Australia · Ironman 2028</div>
+        <div class="option-desc">Stay at Michigan · Complete all courses · Work internship · Race Ironman post-graduation 2028</div>
+      </div>
+      <div class="option-body">
+        <div class="cost-row">
+          <div><div class="cost-label">Flight / Sydney living</div><div class="cost-sub">Not applicable</div></div>
+          <div class="cost-val na">—</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Ironman entry (2028)</div><div class="cost-sub">Race TBD post-graduation</div></div>
+          <div class="cost-val">$950</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Race travel (2028)</div><div class="cost-sub">Domestic or international TBD</div></div>
+          <div class="cost-val">$500–1,500</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Internship income × 2</div><div class="cost-sub">Summer 2026 + summer 2027</div></div>
+          <div class="cost-val saved">−$20,000</div>
+        </div>
+        <div class="cost-row">
+          <div><div class="cost-label">Australia experience</div><div class="cost-sub">Not included</div></div>
+          <div class="cost-val na">—</div>
+        </div>
+        <div class="option-total">
+          <div class="total-label">Net incremental cost</div>
+          <div class="total-val cd">~−$18,500</div>
+        </div>
+        <div class="option-notes">
+          Most financially advantageous. Two full internships, no abroad costs, Ironman on your own timeline. But: no Australia, no hard deadline driving the training, and the risk that post-graduation life makes the Ironman harder to execute, not easier. Best career setup of any option.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Comparison table -->
+  <div class="section-head">Head-to-head comparison</div>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th style="width:22%">Factor</th>
+        <th style="width:19.5%"><span class="ca">A</span> — Sydney + AUS Ironman</th>
+        <th style="width:19.5%"><span class="cb">B</span> — Sydney + LP</th>
+        <th style="width:19.5%"><span class="cc">C</span> — No AUS + LP</th>
+        <th style="width:19.5%"><span class="cd">D</span> — No AUS + 2028</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Net cost</td>
+        <td>~$6,200</td>
+        <td>~$16,300</td>
+        <td>~−$8,100</td>
+        <td>~−$18,500</td>
+      </tr>
+      <tr>
+        <td>Australia experience</td>
+        <td><span class="tag tag-good">Yes</span></td>
+        <td><span class="tag tag-good">Yes</span></td>
+        <td><span class="tag tag-bad">No</span></td>
+        <td><span class="tag tag-bad">No</span></td>
+      </tr>
+      <tr>
+        <td>Summer internship</td>
+        <td><span class="tag tag-good">Yes — summer '27</span></td>
+        <td><span class="tag tag-bad">No — displaced by IM build</span></td>
+        <td><span class="tag tag-good">Yes — summer '27</span></td>
+        <td><span class="tag tag-good">Yes — both summers</span></td>
+      </tr>
+      <tr>
+        <td>Training timeline</td>
+        <td><span class="tag tag-good">Clean — full 17 months</span></td>
+        <td><span class="tag tag-bad">Compressed — peak during finals</span></td>
+        <td><span class="tag tag-good">Clean — no constraints</span></td>
+        <td><span class="tag tag-good">Most time, no deadline</span></td>
+      </tr>
+      <tr>
+        <td>Ironman training disruption risk</td>
+        <td><span class="tag tag-ok">Medium — Sept move-in</span></td>
+        <td><span class="tag tag-bad">High — builds during senior spring</span></td>
+        <td><span class="tag tag-good">Low</span></td>
+        <td><span class="tag tag-good">Low</span></td>
+      </tr>
+      <tr>
+        <td>Family at race</td>
+        <td><span class="tag tag-bad">Very expensive to attend</span></td>
+        <td><span class="tag tag-good">Easy — drive to Lake Placid</span></td>
+        <td><span class="tag tag-good">Easy — drive to Lake Placid</span></td>
+        <td><span class="tag tag-ok">Depends on race chosen</span></td>
+      </tr>
+      <tr>
+        <td>Friend racing with you</td>
+        <td><span class="tag tag-bad">Unlikely</span></td>
+        <td><span class="tag tag-ok">Possible — Lake Placid</span></td>
+        <td><span class="tag tag-ok">Possible — Lake Placid</span></td>
+        <td><span class="tag tag-na">TBD</span></td>
+      </tr>
+      <tr>
+        <td>Bike logistics</td>
+        <td><span class="tag tag-good">Rent in AUS — no shipping</span></td>
+        <td><span class="tag tag-good">Drive to Lake Placid</span></td>
+        <td><span class="tag tag-good">Drive to Lake Placid</span></td>
+        <td><span class="tag tag-good">TBD — no issue</span></td>
+      </tr>
+      <tr>
+        <td>Strength block length</td>
+        <td><span class="tag tag-good">Full 26 weeks</span></td>
+        <td><span class="tag tag-bad">~18 weeks — cut short</span></td>
+        <td><span class="tag tag-good">Full 26 weeks</span></td>
+        <td><span class="tag tag-good">Full 26+ weeks</span></td>
+      </tr>
+      <tr>
+        <td>Post-race experience</td>
+        <td><span class="tag tag-good">Travel Australia rest of semester</span></td>
+        <td><span class="tag tag-good">Full Australia semester, race-free</span></td>
+        <td><span class="tag tag-na">Graduate, start career</span></td>
+        <td><span class="tag tag-na">Already working</span></td>
+      </tr>
+      <tr>
+        <td>Parent appeal</td>
+        <td><span class="tag tag-ok">Internship + abroad = strong case</span></td>
+        <td><span class="tag tag-bad">No internship is a hard sell</span></td>
+        <td><span class="tag tag-good">Career-forward, financially smart</span></td>
+        <td><span class="tag tag-good">Strongest career case</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Timeline visual -->
+  <div class="timeline-section">
+    <div class="section-head">Timeline comparison — what each option looks like month by month</div>
+    <div class="timeline-strip">
+
+      <div class="tl-row" style="margin-bottom:4px;">
+        <div class="tl-period"></div>
+        <div class="tl-bars">
+          <div style="font-family:var(--font-head); font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--mid); padding:4px 0;">Option A</div>
+          <div style="font-family:var(--font-head); font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--mid); padding:4px 0;">Option B</div>
+          <div style="font-family:var(--font-head); font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--mid); padding:4px 0;">Option C</div>
+          <div style="font-family:var(--font-head); font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--mid); padding:4px 0;">Option D</div>
+        </div>
+      </div>
+
+      <!-- Rows -->
+      <div class="tl-row"><div class="tl-period">Jun–Dec '26</div><div class="tl-bars">
+        <div class="tl-bar" style="background:#2a5fa0;">Strength</div>
+        <div class="tl-bar" style="background:#2a5fa0;">Strength</div>
+        <div class="tl-bar" style="background:#2a5fa0;">Strength</div>
+        <div class="tl-bar" style="background:#2a5fa0;">Strength</div>
+      </div></div>
+
+      <div class="tl-row"><div class="tl-period">Jan–Apr '27</div><div class="tl-bars">
+        <div class="tl-bar" style="background:#1a7a4a;">Run / Tri Ramp</div>
+        <div class="tl-bar" style="background:#c85a00;">IM Build + School</div>
+        <div class="tl-bar" style="background:#1a7a4a;">Run / Tri Ramp</div>
+        <div class="tl-bar" style="background:#1a7a4a;">Run / Tri Ramp</div>
+      </div></div>
+
+      <div class="tl-row"><div class="tl-period">May–Aug '27</div><div class="tl-bars">
+        <div class="tl-bar" style="background:#1a7a4a;">Internship + IM Build</div>
+        <div class="tl-bar" style="background:#8a1a1a;">No internship · Taper · Race Jul</div>
+        <div class="tl-bar" style="background:#1a7a4a;">Internship + IM Build</div>
+        <div class="tl-bar" style="background:#1a7a4a;">Internship + IM Build</div>
+      </div></div>
+
+      <div class="tl-row"><div class="tl-period">Sep–Dec '27</div><div class="tl-bars">
+        <div class="tl-bar" style="background:#7a3a00;">Sydney · Peak · Race Oct</div>
+        <div class="tl-bar" style="background:#7a3a00;">Sydney (post-race, relaxed)</div>
+        <div class="tl-bar" style="background:#555;">Grad / Job search</div>
+        <div class="tl-bar" style="background:#555;">Grad / Job search</div>
+      </div></div>
+
+      <div class="tl-row"><div class="tl-period">2028+</div><div class="tl-bars">
+        <div class="tl-bar" style="background:#555;">Career begins</div>
+        <div class="tl-bar" style="background:#555;">Career begins</div>
+        <div class="tl-bar" style="background:#555;">Career begins</div>
+        <div class="tl-bar" style="background:#5a1a6a;">IM race TBD</div>
+      </div></div>
+
+    </div>
+    <div class="tl-legend" style="margin-top:14px;">
+      <div class="legend-item"><div class="legend-swatch" style="background:#2a5fa0;"></div>Strength block</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#1a7a4a;"></div>Tri ramp / IM build</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#7a3a00;"></div>Sydney semester</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#c85a00;"></div>Compressed IM build</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#8a1a1a;"></div>No internship</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#555;"></div>Post-grad / career</div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- Recommendation -->
+  <div class="rec-box">
+    <div class="rec-badge">Recommendation</div>
+    <div class="rec-eyebrow">Based on your stated priorities</div>
+    <div class="rec-title">Option A — Sydney + Ironman Australia</div>
+    <div class="rec-body">
+      Option A is the only scenario where everything you actually care about fits without major compromise: the Australia experience, the Ironman, a summer internship, and a clean training timeline. The net cost (~$6,200 after internship income) is significantly lower than Option B, which sacrifices the internship and compresses training into your hardest academic semester.<br><br>
+      The key moves that make Option A work: rent a bike in Australia rather than shipping yours, build in a realistic 2-week disruption buffer around your September move-in, and treat the internship as genuinely important rather than a checkbox — it serves you and your parents' concerns simultaneously.<br><br>
+      Option C is the right answer if Australia genuinely doesn't happen for any reason. It has the cleanest training setup, the internship, and the cheapest cost. Keep it as your contingency.<br><br>
+      Option B is the most expensive path to the same Australia experience — avoid it unless the Lake Placid race is specifically meaningful to you beyond just completing an Ironman.
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span>Nick · Options A–D · Prepared June 2026</span>
+    <span>Costs are estimates. Verify UNSW fees, visa costs, and Ironman registration directly.</span>
+  </div>
+
+</div>
+</body>
+</html>
