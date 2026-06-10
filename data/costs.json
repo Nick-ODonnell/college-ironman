@@ -1,0 +1,38 @@
+{
+  "sydney": {
+    "flight": {
+      "low": 1200,
+      "expected": 1600,
+      "high": 2200
+    },
+
+    "housing": {
+      "monthly": null,
+      "months": 4
+    },
+
+    "visa": {
+      "student_visa": null,
+      "health_insurance": null
+    }
+  },
+
+  "ironman": {
+    "lake_placid": {
+      "registration": null,
+      "lodging": null,
+      "travel": null
+    },
+
+    "port_macquarie": {
+      "registration": null,
+      "lodging": null,
+      "travel": null
+    }
+  },
+
+  "academics": {
+    "summer_tuition_6_credits": null,
+    "extra_semester_cost": null
+  }
+}
