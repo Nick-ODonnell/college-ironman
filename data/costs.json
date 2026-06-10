@@ -1,38 +1,59 @@
 {
-  "sydney": {
-    "flight": {
-      "low": 1200,
-      "expected": 1600,
-      "high": 2200
+  "UNSW_fall": {
+    "health_insurance": {
+        "UM": 191,
+        "OSHC": 190
     },
-
-    "housing": {
-      "monthly": null,
-      "months": 4
+    "program": {
+        "tuition": 7640,
+        "books": 200
     },
+    "entry_expenses": {
+        "round_trip_flight": 1600,
+        "passport_application": 180,
+        "visa": 1400
+    },
+    "weekly_expenses": {
+        "housing": 500,
+        "food": 140,
+        "local_transportation": 28,
+        "personal_expenses": 150,
+        "weeks": 14
+    },
+    "total": 22853
+  },
 
-    "visa": {
-      "student_visa": null,
-      "health_insurance": null
-    }
+  "UM_summer": {
+    "program": {
+        "tuition": 17925,
+        "books": 200
+    },
+    "weekly_expenses": {
+        "housing": 0,
+        "food": 100,
+        "personal_expenses": 100,
+        "weeks": 7
+    },
+    "total": 19525
   },
 
   "ironman": {
     "lake_placid": {
-      "registration": null,
-      "lodging": null,
-      "travel": null
+        "registration": 1065,
+        "race_trip": {
+            "low": 600,
+            "expected": 900,
+            "high": 1200
+        }
     },
 
     "port_macquarie": {
-      "registration": null,
-      "lodging": null,
-      "travel": null
+        "registration": 965,
+        "race_trip": {
+            "low": 300,
+            "expected": 700,
+            "high": 1200
+        }
     }
-  },
-
-  "academics": {
-    "summer_tuition_6_credits": null,
-    "extra_semester_cost": null
   }
 }

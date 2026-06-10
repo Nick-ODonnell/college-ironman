@@ -2,10 +2,20 @@
   "optionA": {
     "name": "Sydney + Port Macquarie",
     "uses": [
-      "sydney.flight",
-      "sydney.housing",
-      "sydney.visa",
+      "UNSW_fall.health_insurance",
+      "UNSW_fall.program",
+      "UNSW_fall.entry_expenses",
+      "UNSW_fall.weekly_expenses",
       "ironman.port_macquarie"
+    ]
+  }, 
+
+  "optionB": {
+    "name": "UM + Lake Placid",
+    "uses": [
+      "UM_summer.program",
+      "UM_summer.weekly_expenses",
+      "ironman.lake_placid"
     ]
   }
 }

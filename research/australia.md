@@ -1,24 +1,9 @@
-# UNSW Sydney Exchange Research
-
-## Program
-
-University:
-
-* UNSW Sydney
-
-Program Type:
-
-* University of Michigan Exchange
-
----
+# UNSW
 
 ## Academic Questions
 
-* Which mathematics courses transfer?
-* Which courses satisfy MATH 555?
-* Which courses satisfy MATH 567?
-* Required course load?
-* Semester dates?
+* Required course load: 12 credits
+* Semester dates: September 6, 2027 - December 9, 2027
 
 ---
 
@@ -38,20 +23,20 @@ Program Type:
 
 ### Transportation
 
-* Roundtrip flight estimates
+* Roundtrip flight estimate: $1600
 * Airport transportation
-* Public transit costs
+* Public transit costs: $28/week
 
 ### Immigration
 
-* Student visa cost
+* Student visa: $1400
 * Processing timeline
 * Required documentation
 
 ### Insurance
 
-* OSHC requirement
-* Typical cost
+* OSHC required, $190
+* UM travel insurance required, $191
 
 ---
 
@@ -65,5 +50,6 @@ Program Type:
 ---
 
 ## Sources
+https://drive.google.com/file/d/1YVMbqrvjfUHg6nJJNZhMK9Gh8kfRZIBQ/view?pli=1
 
 TBD

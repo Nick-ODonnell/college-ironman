@@ -25,7 +25,7 @@ Questions:
 Questions:
 
 * Would Fall 2027 at UNSW satisfy degree requirements?
-* Would grades transfer or transfer as pass/fail?
+* Would grades transfer or transfer as pass/fail? Not P/F
 * What approval process is required?
 * Are there risks delaying graduation?
 
