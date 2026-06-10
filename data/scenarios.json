@@ -1,0 +1,19 @@
+{
+  "optionA": {
+    "name": "Sydney + Port Macquarie",
+    "flight": 1600,
+    "housing": 9100,
+    "visa": 700,
+    "ironman": 950,
+    "race_trip": 350
+  },
+
+  "optionC": {
+    "name": "Michigan + Lake Placid",
+    "flight": 0,
+    "housing": 0,
+    "visa": 0,
+    "ironman": 950,
+    "race_trip": 800
+  }
+}
